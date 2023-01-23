@@ -1,7 +1,6 @@
 # README
 # Intro
-This code uses the OpenAI API to generate a response to a user-provided prompt, while also logging the user's input and the API's response to a file. It uses the os module to get the API key from the environment variable OPENAI_API_KEY, the re module to clean the topic name to be used in the log file name and the openai module to interact with the OpenAI API. It uses a while loop to continuously prompt the user for input and generate responses from the API. If the user inputs 'exit', the loop breaks and the log file is closed. The script set max_tokens, temperature, top_p, frequency_penalty, presence_penalty as well.
-
+This Python code is using the OpenAI API to generate responses to user input in a loop. The code starts by importing necessary modules and setting the API key. Then, it sets up logging by creating a file with the topic name. The code defines two functions, estimate_tokens and reduce_context, which are used to determine the number of tokens in a given text and to reduce the size of the context variable, respectively. The code then enters a while loop, in which it prompts the user for input, and uses the OpenAI API to generate a response to the input. The response, along with the user's input, is written to a log file, and the context variable is updated. The loop continues until the user enters "exit", at which point the code breaks out of the loop and the log file is closed.
 context: 
 - https://stancsz.medium.com/keeping-the-gpt-3-context-alive-875e1624adf4
 - https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation

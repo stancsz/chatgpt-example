@@ -28,7 +28,7 @@ def estimate_tokens(text):
 def reduce_context(context, limit=3000):
     context_list = context.split()
     new_size = int(limit / 0.75)
-    return " ".join(context.split()[-new_size:])
+    return " ".join(context.split()[-new_size:]).split('.', 1)[-1]
 
 
 while True:
@@ -39,7 +39,16 @@ while True:
     # If the user inputs 'exit', the loop breaks
     if prompt == 'exit':
         break
-
+    if estimate_tokens(context) >= 2000 * 0.95:
+        print(f"context size exceeded! context\n'''{context}'''")
+        print(estimate_tokens(context))
+        print(reduce_context(context))
+        context = reduce_context(context)
+    if estimate_tokens(prompt) >= 2000 * 0.95:
+        print(f"context size exceeded! context\n'''{context}'''")
+        print(estimate_tokens(prompt))
+        print(reduce_context(prompt))
+        prompt = reduce_context(prompt)
     # Sends the prompt and context to the OpenAI API
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -59,8 +68,6 @@ while True:
     print(response["choices"][0]["text"] + "\n")
     # Adds the prompt and response to the context variable
     context += prompt + "/n"
-    print(f"context[{context}]")
-    print(estimate_tokens(context))
-    print(reduce_context(context))
+
     # Closes the log file
     file.close()
