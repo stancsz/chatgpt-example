@@ -6,12 +6,14 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Setting up the logging feature by creating a file with the topic name
-topic = "demo" # TODO: change it to your topic name
+topic = "demo"  # TODO: change it to your topic name
 history_log = 'history/' + re.sub('[^0-9a-zA-Z]+', '', topic) + '.log'
+prompt_log = 'history/' + re.sub('[^0-9a-zA-Z]+', '', topic) + '_prompts.log'
 
 # Initializing the prompt and context variables
 prompt = ""
 context = ""
+keep_context = False
 
 
 # How many last prompt will the script pass to the next prompt
@@ -29,6 +31,13 @@ def reduce_context(context, limit=3000):
     context_list = context.split()
     new_size = int(limit / 0.75)
     return " ".join(context.split()[-new_size:]).split('.', 1)[-1]
+
+
+def write_logs(file_path, payload):
+    file = open(file_path, "a")
+    file.write(payload)
+    # Closes the log file
+    file.close()
 
 
 while True:
@@ -50,9 +59,11 @@ while True:
         print(reduce_context(prompt))
         prompt = reduce_context(prompt)
     # Sends the prompt and context to the OpenAI API
+    if keep_context:
+        prompt = "the conversation context is " + context + "\n\n" + "my prompt is," + prompt,
     response = openai.Completion.create(
         model="text-davinci-003",
-        prompt="context:" + context + "\n" + "prompt:" + prompt,
+        prompt=prompt,
         temperature=0.7,
         max_tokens=4000,
         top_p=1,
@@ -60,14 +71,12 @@ while True:
         presence_penalty=0
     )
     # Writes the user's input to the log file
-    file = open(history_log, "a")
-    file.write(prompt)
+    write_logs(history_log, prompt)
+    write_logs(prompt_log, prompt)
     # Writes the API's response to the log file
-    file.write(response["choices"][0]["text"] + "\n")
+    write_logs(history_log, response["choices"][0]["text"] + "\n")
+
     # Prints the API's response
     print(response["choices"][0]["text"] + "\n")
     # Adds the prompt and response to the context variable
-    context += prompt + "/n"
-
-    # Closes the log file
-    file.close()
+    context += prompt + "\n"
