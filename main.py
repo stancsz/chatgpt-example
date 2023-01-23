@@ -6,7 +6,7 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Setting up the logging feature by creating a file with the topic name
-topic = "demo"
+topic = "demo" # TODO: change it to your topic name
 history_log = 'history/' + re.sub('[^0-9a-zA-Z]+', '', topic) + '.log'
 
 # Initializing the prompt and context variables
