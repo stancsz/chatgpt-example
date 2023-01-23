@@ -1,9 +1,13 @@
 # README
 The purpose of this project is to provide a way to use powerful GPT-3 language models, such as ChatGPT, in a low-code environment. This will enable developers to incorporate natural language processing capabilities into their applications with minimal effort. By using these powerful GPT-3 models, developers will be able to create more accurate and reliable natural language processing systems.
 
+This Python code is using the OpenAI API to generate responses to user input in a loop. The code starts by importing necessary modules and setting the API key. Then, it sets up logging by creating a file with the topic name. The code defines two functions, estimate_tokens and reduce_context, which are used to determine the number of tokens in a given text and to reduce the size of the context variable, respectively. The code then enters a while loop, in which it prompts the user for input, and uses the OpenAI API to generate a response to the input. The response, along with the user's input, is written to a log file, and the context variable is updated. The loop continues until the user enters "exit", at which point the code breaks out of the loop and the log file is closed.
+context: 
+- https://stancsz.medium.com/keeping-the-gpt-3-context-alive-875e1624adf4
+- https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation
+
 # Why
 ChatGPT is a powerful GPT-3 language model that is designed to be used in chatbot applications. It is more powerful than other GPT-3 models because it uses a deep learning-based approach to generate natural language responses. This approach allows ChatGPT to generate more natural and accurate responses than other GPT-3 models.
-
 
 # How it works
 ## Setup
@@ -19,11 +23,6 @@ Process finished with exit code 0
 ```
 ## Logs
 After executing your api calls, find your logs under `history/{your topic name}.log`
-
-This Python code is using the OpenAI API to generate responses to user input in a loop. The code starts by importing necessary modules and setting the API key. Then, it sets up logging by creating a file with the topic name. The code defines two functions, estimate_tokens and reduce_context, which are used to determine the number of tokens in a given text and to reduce the size of the context variable, respectively. The code then enters a while loop, in which it prompts the user for input, and uses the OpenAI API to generate a response to the input. The response, along with the user's input, is written to a log file, and the context variable is updated. The loop continues until the user enters "exit", at which point the code breaks out of the loop and the log file is closed.
-context: 
-- https://stancsz.medium.com/keeping-the-gpt-3-context-alive-875e1624adf4
-- https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation
 
 # Demo
 ```
