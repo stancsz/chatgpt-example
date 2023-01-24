@@ -1,0 +1,6 @@
+history
+tmp
+*.log
+.idea
+__pycache__
+.env
