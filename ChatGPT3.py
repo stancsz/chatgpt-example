@@ -24,6 +24,17 @@ def write_logs(file_path, payload):
     file.write(payload)
     file.close()
 
+def CallAPI(prompt):
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=prompt,
+        temperature=0.7,
+        max_tokens=4000,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0
+    )
+    return response["choices"][0]["text"]
 
 def ChatGPT3(
         # Setting up the logging feature by creating a file with the topic name
@@ -58,21 +69,13 @@ def ChatGPT3(
         if keep_context:
             if context != "":
                 prompt = "context:" + context + "prompt:" + prompt
-        response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=prompt,
-            temperature=0.7,
-            max_tokens=4000,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0
-        )
+        response = CallAPI(prompt)
         # Writes the user's input to the log file
         write_logs(history_log, prompt + '\n')
         write_logs(prompt_log, prompt + '\n')
         # Writes the API's response to the log file
-        write_logs(history_log, response["choices"][0]["text"] + "\n")
+        write_logs(history_log,  response + "\n")
         # Prints the API's response
-        print(response["choices"][0]["text"] + "\n")
+        print(response + "\n")
         # Adds the prompt and response to the context variable
         context += prompt + "\n"
