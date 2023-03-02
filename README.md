@@ -1,70 +1,36 @@
 # README
-The purpose of this project is to provide a way to use powerful GPT-3 language models, such as ChatGPT, in a low-code environment. This will enable developers to incorporate natural language processing capabilities into their applications with minimal effort. By using these powerful GPT-3 models, developers will be able to create more accurate and reliable natural language processing systems.
+The purpose of this Repo is to demonstrate how to create a simple python app using the newest `gpt-3.5-turbo` model from OpenAI. 
 
-This Python code is using the OpenAI API to generate responses to user input in a loop. The code starts by importing necessary modules and setting the API key. Then, it sets up logging by creating a file with the topic name. The code defines two functions, estimate_tokens and reduce_context, which are used to determine the number of tokens in a given text and to reduce the size of the context variable, respectively. The code then enters a while loop, in which it prompts the user for input, and uses the OpenAI API to generate a response to the input. The response, along with the user's input, is written to a log file, and the context variable is updated. The loop continues until the user enters "exit", at which point the code breaks out of the loop and the log file is closed.
-context: 
-- https://stancsz.medium.com/keeping-the-gpt-3-context-alive-875e1624adf4
-- https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation
-
-# Why
-ChatGPT is a powerful GPT-3 language model that is designed to be used in chatbot applications. It is more powerful than other GPT-3 models because it uses a deep learning-based approach to generate natural language responses. This approach allows ChatGPT to generate more natural and accurate responses than other GPT-3 models.
-
-# How it works
-## Setup
-Get your API key from, set it as your environment variable `OPENAI_API_KEY`, then run `main.py`
-https://beta.openai.com/account/api-keys
-## Terminating
-just prompt `exit` to exit
-```
->>
-exit
-
-Process finished with exit code 0
-```
-## Logs
-After executing your api calls, find your logs under `history/{your topic name}.log`
-
-# Demo
-```
-givme me a list of 10 programming languages
-
-1. Java
-2. C/C++
-3. Python
-4. JavaScript
-5. Ruby
-6. PHP
-7. Swift
-8. Go
-9. Rust
-10. Kotlin
-for each of the programming language above, write a short intro of each
-
-1. Java: Java is a general-purpose, object-oriented programming language developed by Sun Microsystems in 1995. It is a powerful, secure language that can be used to create a wide variety of applications.
-
-2. C/C++: C and C++ are two of the most popular programming languages in the world. C is a powerful, low-level language used for system and application programming, while C++ is an object-oriented language that is used for developing large software applications.
-
-3. Python: Python is an interpreted, high-level, general-purpose programming language. It is a versatile language that can be used to create desktop applications, web applications, data science projects, and more.
-
-4. JavaScript: JavaScript is a high-level, interpreted programming language commonly used to create interactive web applications. It is a popular language that is used by developers all over the world.
-
-5. Ruby: Ruby is an object-oriented programming language designed to be easy to learn and use. It is a popular language used to create web applications and has powerful features such as metaprogramming.
-
-6. PHP: PHP is a popular server-side scripting language used to create dynamic websites and web applications. It is a flexible language that can be used for a variety of tasks.
-
-7. Swift: Swift is a powerful, open-source programming language developed by Apple in 2014. It is a modern language used to create applications for iOS and macOS.
-
-8. Go: Go is a general-purpose programming language developed at Google in 2009. It is a statically typed language that is designed to be easy to read, write, and maintain.
-
-9. Rust: Rust is a modern, low-level programming language developed at Mozilla in 2010. It is a safe, fast language that can be used to create a variety of applications.
-
-10. Kotlin: Kotlin is a statically typed, cross-platform programming language developed at JetBrains in 2011. It is a modern language that is used to create Android and web applications.
-
+# Usage
+```python
+app = ChatApp()
+message_list = ["how are you?",
+           "I want to know how to learn python quickly?",
+           "What are the best resources for this?",
+           "what should I learn first?"
+           ]
+for m in message_list:
+    res = app.chat(m)
+    print(m, res)
 ```
 
-# How to Contribution
-We welcome contributions from the community to this project. If you would like to contribute, feel free to fork or clone the repository and submit pull requests with your changes. We also welcome suggestions and bug reports. Please make sure to follow the GitHub contribution guidelines when submitting changes.
+# Test Log
+```
+how are you? {
+  "content": "I'm just a computer program, so I don't have feelings, but I'm functioning properly and ready to help you with any coding questions you have!",
+  "role": "assistant"
+}
+I want to know how to learn python quickly? {
+  "content": "There are several ways to learn Python quickly. Here are some tips that may help:\n\n1. Start with the basics: Before jumping into complex topics, ensure that you have a strong foundation in the basics of Python programming such as variables, data types, variable assignment, loops, functions, etc. You can find many resources online to learn these basics.\n\n2. Practice coding regularly: Regular practice is the key to learn Python quickly. You can start by solving small coding challenges or writing small programs on a daily basis.\n\n3. Use interactive platforms: There are several interactive platforms available online, such as Codecademy, HackerRank, and DataCamp, that can help you learn and practice Python.\n\n4. Learn important libraries: Python has a wide range of powerful libraries that can save you time and effort in programming. Examples include NumPy, Pandas, Matplotlib, Scikit-learn, etc. Learning these libraries can help you accelerate your learning and improve your productivity.\n\n5. Participate in coding communities: Participating in online coding communities can help you learn more quickly by interacting with other developers and getting feedback on your code. You can join forums or groups on social media platforms like Reddit and Facebook.\n\nRemember that learning any programming language takes time and effort. However, with consistent practice and a commitment to improving your skills, you can become proficient in Python in a relatively short amount of time.",
+  "role": "assistant"
+}
+What are the best resources for this? {
+  "content": "There are many resources available for learning Python quickly. Here are some of the best ones:\n\n1. Coursera: Coursera offers a wide range of Python courses that are designed for beginners and those with some programming experience. These courses cover everything from basic programming concepts to advanced topics like machine learning and data analysis.\n\n2. Codecademy: Codecademy is an interactive learning platform that offers free and paid Python courses. It provides hands-on coding experience and covers the essential Python skills for beginners.\n\n3. Udemy: Udemy is an online learning platform that offers a wide variety of Python courses. It provides both free and paid courses, covering various Python skills and applications, from web development to data science.\n\n4. Automate the Boring Stuff with Python: This is a free online book that covers the basics of Python programming and includes practical examples and projects that you can work on, such as web scraping and automating tasks.\n\n5. Python for Everybody: Python for Everybody is a free course offered by the University of Michigan. It covers the basics of Python programming and is suitable for beginners with no prior programming experience.\n\n6. Python documentation: The official Python documentation is an excellent resource for learning Python. It provides clear and detailed explanations of Python concepts and syntax, as well as examples and code snippets.\n\n7. Python community: The Python community is very active and supportive. You can find help, tutorials, and examples online through various forums, social media groups, and developer communities like Stack Overflow and GitHub.\n\nThese resources can help you learn Python quickly and efficiently, but remember that consistent practice and hands-on experience are key to becoming proficient in Python.",
+  "role": "assistant"
+}
+what should I learn first? {
+  "content": "If you are new to programming, you should start with the basic concepts of Python. The following are some of the key concepts to learn first:\n\n1. Variables and Data types: Learn how to create variables and assign values to them. Python has different types of data, such as numbers, strings, and lists.\n\n2. Control Structures: Learn how to control program flow using if/else statements, loops (for and while loops), and basic logic concepts.\n\n3. Functions: Learn how to create functions and pass arguments to them. Functions allow you to segment your code into modular pieces that can be reused throughout your program.\n\n4. Input and Output: Learn how to accept input from users and output results to the screen or file.\n\n5. File handling: Learn how to read/write data from/to files.\n\n6. Libraries: Learn about built-in Python libraries, such as math and random, and how to import external libraries for more advanced functionality.\n\nOnce you have mastered the basics, you can move on to more advanced topics like object-oriented programming, web development, data science, and machine learning.",
+  "role": "assistant"
+}
 
-
-# Future Plan
-I'm working on some wrapper and a better way to structure the API calls in a NLP efficient prompt structure. After that I'd like to make cloud function native api framework for lambda or gcp cloud functions. After that will be working on building custom function and perhaps building an API re-seller startup. If you like to work on these things together, [let's chat!](https://www.linkedin.com/in/stan-chen/).   
+```
